@@ -23,12 +23,14 @@
 
 ### Стек
 - **Frontend**: Astro 5 + Tailwind CSS 4 + TypeScript
-- **Хостинг**: GitVerse Pages (статика)
+- **Хостинг**: GitHub Pages (статика)
 - **i18n**: EN/RU с автоопределением по браузеру
 
 ### Архитектура (планируется)
 - **Аналитика**: PostgreSQL (транзакции) + ClickHouse (time-series цен)
-- **API**: Stalcraft API (eapi.stalcraft.net) — требуется заявка
+- **API**: Stalcraft API (eapi.stalcraft.net)
+  - Приложение: **stalcinfo** (название без "stalcraft" из-за ограничений)
+  - Статус: заявка подана (2026-01-04)
 
 ## Долги (TODO)
 
@@ -38,12 +40,12 @@
   - Добавить `formUrl` prop в SubscribeForm компонент
   - Файл: `src/components/SubscribeForm.astro`
 
-- [ ] **Заявка на API**: Подать заявку на Stalcraft API
-  - URL: https://eapi.stalcraft.net
-  - Указать stalcraft.info как проект
+- [x] **Заявка на API**: Подана (2026-01-04)
+  - Приложение: stalcinfo
+  - Ожидает одобрения от @stalcraft_api_bot
 
 ### Средний приоритет
-- [ ] Настроить GitVerse Pages для деплоя
+- [x] ~~Настроить GitVerse Pages для деплоя~~ → GitHub Pages (настроено)
 - [ ] Добавить OG-картинку (`public/images/og-image.png`)
 
 ### Низкий приоритет
