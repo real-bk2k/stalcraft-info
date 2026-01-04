@@ -2,70 +2,40 @@
 interface Props {
   placeholder: string;
   buttonText: string;
-  successMessage: string;
-  errorMessage: string;
-  alreadyMessage: string;
-  lang: string;
+  comingSoonText: string;
+  formUrl?: string;
 }
 
-const { placeholder, buttonText, successMessage, errorMessage, alreadyMessage, lang } = Astro.props;
+const { placeholder, buttonText, comingSoonText, formUrl } = Astro.props;
+const isDisabled = !formUrl;
 ---
 
-<form id="subscribe-form" class="flex gap-2" data-lang={lang}>
-  <input
-    type="email"
-    name="email"
-    placeholder={placeholder}
-    class="flex-1 px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-colors"
-    required
-  />
-  <button
-    type="submit"
-    class="px-6 py-3 bg-amber-500 hover:bg-amber-400 disabled:bg-amber-500/50 disabled:cursor-not-allowed text-zinc-950 font-semibold rounded-lg transition-colors whitespace-nowrap"
+{isDisabled ? (
+  <div class="flex gap-2">
+    <input
+      type="email"
+      placeholder={placeholder}
+      disabled
+      class="flex-1 px-4 py-3 bg-zinc-900/50 border border-zinc-800/50 rounded-lg text-zinc-500 placeholder-zinc-600 cursor-not-allowed"
+    />
+    <button
+      disabled
+      class="px-6 py-3 bg-amber-500/30 text-zinc-600 font-semibold rounded-lg cursor-not-allowed whitespace-nowrap"
+    >
+      {buttonText}
+    </button>
+  </div>
+  <p class="mt-3 text-sm text-zinc-500">{comingSoonText}</p>
+) : (
+  <a
+    href={formUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold rounded-lg transition-colors"
   >
     {buttonText}
-  </button>
-</form>
-<p id="subscribe-status" class="mt-3 text-sm hidden"></p>
-
-<script define:vars={{ successMessage, errorMessage, alreadyMessage }}>
-  const form = document.getElementById('subscribe-form');
-  const status = document.getElementById('subscribe-status');
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    const email = formData.get('email');
-    const lang = form.dataset.lang || 'en';
-    const button = form.querySelector('button');
-
-    button.disabled = true;
-    status.className = 'mt-3 text-sm hidden';
-
-    try {
-      const response = await fetch('/api/subscribe.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, lang }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        status.textContent = data.message === 'already_subscribed' ? alreadyMessage : successMessage;
-        status.className = 'mt-3 text-sm text-green-400';
-        if (data.message === 'subscribed') {
-          form.reset();
-        }
-      } else {
-        throw new Error(data.error);
-      }
-    } catch (err) {
-      status.textContent = errorMessage;
-      status.className = 'mt-3 text-sm text-red-400';
-    } finally {
-      button.disabled = false;
-    }
-  });
-</script>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+    </svg>
+  </a>
+)}

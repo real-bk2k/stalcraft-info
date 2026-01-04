@@ -17,9 +17,6 @@ pnpm-debug.log*
 .env
 .env.production
 
-# API config with credentials
-public/api/config.php
-
 # macOS-specific files
 .DS_Store
 
