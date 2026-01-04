@@ -35,10 +35,9 @@
 ## Долги (TODO)
 
 ### Высокий приоритет
-- [ ] **Форма подписки**: Подключить Яндекс Формы
-  - Создать форму на forms.yandex.ru с полем email
-  - Добавить `formUrl` prop в SubscribeForm компонент
-  - Файл: `src/components/SubscribeForm.astro`
+- [x] **Форма подписки**: Яндекс Формы подключены (2026-01-04)
+  - RU: https://forms.yandex.ru/u/695a96dc02848f5d316bf684
+  - EN: https://forms.yandex.ru/u/695a991d49af47db1f5db8ed
 
 - [x] **Заявка на API**: Подана (2026-01-04)
   - Приложение: stalcinfo
