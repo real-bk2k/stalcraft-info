@@ -22,6 +22,9 @@ export const translations = {
     'hero.notify': 'Get notified on launch',
     'hero.email_placeholder': 'your@email.com',
     'hero.subscribe': 'Notify me',
+    'hero.success': 'Thanks! We\'ll notify you on launch.',
+    'hero.already': 'You\'re already subscribed!',
+    'hero.error': 'Something went wrong. Please try again.',
 
     // Features
     'features.title': 'Planned Features',
@@ -56,6 +59,9 @@ export const translations = {
     'hero.notify': 'Узнай о запуске первым',
     'hero.email_placeholder': 'your@email.com',
     'hero.subscribe': 'Уведомить меня',
+    'hero.success': 'Спасибо! Мы сообщим о запуске.',
+    'hero.already': 'Вы уже подписаны!',
+    'hero.error': 'Что-то пошло не так. Попробуйте ещё раз.',
 
     // Features
     'features.title': 'Планируемые функции',

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
 import FeatureCard from '../../components/FeatureCard.astro';
+import SubscribeForm from '../../components/SubscribeForm.astro';
 import { t } from '../../i18n/translations';
 
 const lang = 'ru';
@@ -52,21 +53,14 @@ const lang = 'ru';
             <!-- Email signup -->
             <div class="max-w-md mx-auto">
               <p class="text-sm text-zinc-500 mb-3">{t(lang, 'hero.notify')}</p>
-              <form class="flex gap-2" action="#" method="POST">
-                <input
-                  type="email"
-                  name="email"
-                  placeholder={t(lang, 'hero.email_placeholder')}
-                  class="flex-1 px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-colors"
-                  required
-                />
-                <button
-                  type="submit"
-                  class="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold rounded-lg transition-colors whitespace-nowrap"
-                >
-                  {t(lang, 'hero.subscribe')}
-                </button>
-              </form>
+              <SubscribeForm
+                placeholder={t(lang, 'hero.email_placeholder')}
+                buttonText={t(lang, 'hero.subscribe')}
+                successMessage={t(lang, 'hero.success')}
+                alreadyMessage={t(lang, 'hero.already')}
+                errorMessage={t(lang, 'hero.error')}
+                lang={lang}
+              />
             </div>
           </div>
         </div>
