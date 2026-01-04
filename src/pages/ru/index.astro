@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import { t } from '../../i18n/translations';
+
+const lang = 'ru';
+---
+
+<Layout
+  title={t(lang, 'meta.title')}
+  description={t(lang, 'meta.description')}
+  lang={lang}
+>
+  <div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="border-b border-zinc-800/50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center font-bold text-zinc-950 text-lg">
+            S
+          </div>
+          <span class="text-lg font-semibold text-zinc-100">stalcraft.info</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-full">
+            <span class="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse"></span>
+            {t(lang, 'header.coming_soon')}
+          </span>
+          <LanguageSwitcher currentLang={lang} />
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main class="flex-1 flex flex-col">
+      <section class="flex-1 flex items-center py-16 sm:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+          <!-- Decorative element -->
+          <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-3xl"></div>
+          </div>
+
+          <div class="relative">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-zinc-100 mb-6 leading-tight">
+              {t(lang, 'hero.title')}
+            </h1>
+            <p class="text-lg sm:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+              {t(lang, 'hero.subtitle')}
+            </p>
+
+            <!-- Email signup -->
+            <div class="max-w-md mx-auto">
+              <p class="text-sm text-zinc-500 mb-3">{t(lang, 'hero.notify')}</p>
+              <form class="flex gap-2" action="#" method="POST">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder={t(lang, 'hero.email_placeholder')}
+                  class="flex-1 px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-colors"
+                  required
+                />
+                <button
+                  type="submit"
+                  class="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold rounded-lg transition-colors whitespace-nowrap"
+                >
+                  {t(lang, 'hero.subscribe')}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="py-16 sm:py-24 bg-zinc-900/30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+          <h2 class="text-2xl sm:text-3xl font-bold text-zinc-100 text-center mb-12">
+            {t(lang, 'features.title')}
+          </h2>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <FeatureCard
+              icon="📊"
+              title={t(lang, 'features.auction.title')}
+              description={t(lang, 'features.auction.desc')}
+            />
+            <FeatureCard
+              icon="🔧"
+              title={t(lang, 'features.crafting.title')}
+              description={t(lang, 'features.crafting.desc')}
+            />
+            <FeatureCard
+              icon="📈"
+              title={t(lang, 'features.meta.title')}
+              description={t(lang, 'features.meta.desc')}
+            />
+            <FeatureCard
+              icon="🌍"
+              title={t(lang, 'features.regions.title')}
+              description={t(lang, 'features.regions.desc')}
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800/50 py-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+        <p class="text-zinc-500 text-sm mb-2">{t(lang, 'footer.project')}</p>
+        <p class="text-zinc-600 text-xs">{t(lang, 'footer.disclaimer')}</p>
+      </div>
+    </footer>
+  </div>
+</Layout>

@@ -1,0 +1,35 @@
+---
+import { languages, type Lang } from '../i18n/translations';
+
+interface Props {
+  currentLang: Lang;
+}
+
+const { currentLang } = Astro.props;
+---
+
+<div class="flex items-center gap-2">
+  {Object.entries(languages).map(([code, name]) => (
+    <a
+      href={`/${code}/`}
+      data-lang={code}
+      class:list={[
+        'lang-link px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
+        code === currentLang
+          ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+          : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800',
+      ]}
+    >
+      {code.toUpperCase()}
+    </a>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll('.lang-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const lang = (link as HTMLAnchorElement).dataset.lang;
+      if (lang) localStorage.setItem('preferred-lang', lang);
+    });
+  });
+</script>

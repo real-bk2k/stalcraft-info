@@ -1,0 +1,40 @@
+---
+// Language detection page - redirects based on browser language
+import { languages, defaultLang } from '../i18n/translations';
+
+const supportedLangs = Object.keys(languages);
+---
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script is:inline define:vars={{ supportedLangs, defaultLang }}>
+      (function() {
+        // Check if user has a saved preference
+        const saved = localStorage.getItem('preferred-lang');
+        if (saved && supportedLangs.includes(saved)) {
+          window.location.replace('/' + saved + '/');
+          return;
+        }
+
+        // Detect from browser
+        const browserLang = navigator.language?.split('-')[0] || defaultLang;
+        const targetLang = supportedLangs.includes(browserLang) ? browserLang : defaultLang;
+
+        window.location.replace('/' + targetLang + '/');
+      })();
+    </script>
+    <!-- Fallback for no-JS -->
+    <noscript>
+      <meta http-equiv="refresh" content="0;url=/en/" />
+    </noscript>
+  </head>
+  <body>
+    <noscript>
+      <p>Redirecting to <a href="/en/">English version</a>...</p>
+    </noscript>
+  </body>
+</html>
